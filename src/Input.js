@@ -1,7 +1,9 @@
 import React from 'react'
 import { Component } from 'react'
+import Button from 'antd/lib/button'
+import { Input } from 'antd'
 
-export default class Input extends Component {
+export default class SaveTask extends Component {
   constructor(props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -25,15 +27,15 @@ export default class Input extends Component {
   render() {
     return (
       <div>
-        <h2>Super Lists</h2>
+        <h2 className="title">Super Lists</h2>
         <form onSubmit={this.handleSubmit}>
           <label>Task</label>
-          <input
+          <Input
             type="text"
             name="task"
           />
           
-          <button type="submit">Save</button>
+          <Button type="submit">Save</Button>
         </form>
       </div>
     )
