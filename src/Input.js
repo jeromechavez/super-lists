@@ -8,34 +8,30 @@ export default class SaveTask extends Component {
   constructor(props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
     this.state = {
-      tasks: []
+      tasks: [],
+      currentInput: ''
     }
   }
 
-  handleSubmit(event) {
+  handleChange = (event) => {
+    this.setState({currentInput: event.target.value})
+  }
+
+  handleSubmit = (event) => {
+    alert(this.state.currentInput + ' was saved!')
     event.preventDefault()
-    const target = event.target
-    console.log(target)
-    const data = new FormData(target)
-    const newTask = {}
-    for (let pair of data.entries()) {
-      newTask[pair[0]] = pair[1]
-    }
-    console.log(newTask)
-    const updatedTasks = [...this.state.tasks, newTask]
-    this.setState({tasks: updatedTasks})
   }
   
   render() {
-    console.log(this.state.tasks)
     return (
       <div>
         <h2 className="title">Super Lists</h2>
         <div className="task-container">
           <Form onSubmit={this.handleSubmit}>
             <FormItem>
-              <Input />
+              <Input value={this.state.currentInput} onChange={this.handleChange} />
             </FormItem>
 
             <FormItem>
@@ -43,7 +39,7 @@ export default class SaveTask extends Component {
                 type="primary"
                 htmlType="submit"
                 size="large"
-              >Save</Button>
+              >Save Task</Button>
             </FormItem>
           </Form>
         </div>
