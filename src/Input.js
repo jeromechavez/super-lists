@@ -1,42 +1,51 @@
 import React from 'react'
 import { Component } from 'react'
-import Button from 'antd/lib/button'
-import { Input } from 'antd'
+import { Form, Input, Button } from 'antd'
+
+const FormItem = Form.Item
 
 export default class SaveTask extends Component {
   constructor(props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
     this.state = {
-      tasks: []
+      tasks: [],
+      currentInput: ''
     }
   }
 
+  handleChange = (event) => {
+    this.setState({currentInput: event.target.value})
+  }
+
   handleSubmit = (event) => {
+    const { tasks, currentInput } = this.state
+    alert(this.state.currentInput + ' was saved!')
+    this.setState({tasks: [ ...tasks, currentInput ]})
+    console.log(this.state.tasks)
     event.preventDefault()
-    const target = event.target
-    const data = new FormData(target)
-    const newTask = {}
-    for (let pair of data.entries()) {
-      newTask[pair[0]] = pair[1]
-    }
-    const updatedTasks = [...this.state.tasks, newTask]
-    this.setState({tasks: updatedTasks})
   }
   
   render() {
     return (
       <div>
         <h2 className="title">Super Lists</h2>
-        <form onSubmit={this.handleSubmit}>
-          <label>Task</label>
-          <Input
-            type="text"
-            name="task"
-          />
-          
-          <Button type="submit">Save</Button>
-        </form>
+        <div className="task-container">
+          <Form onSubmit={this.handleSubmit}>
+            <FormItem>
+              <Input value={this.state.currentInput} onChange={this.handleChange} />
+            </FormItem>
+
+            <FormItem>
+              <Button
+                type="primary"
+                htmlType="submit"
+                size="large"
+              >Save Task</Button>
+            </FormItem>
+          </Form>
+        </div>
       </div>
     )
   }
