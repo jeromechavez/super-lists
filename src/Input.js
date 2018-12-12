@@ -23,7 +23,6 @@ export default class SaveTask extends Component {
     const { tasks, currentInput } = this.state
     alert(this.state.currentInput + ' was saved!')
     this.setState({tasks: [ ...tasks, currentInput ]})
-    console.log(this.state.tasks)
     event.preventDefault()
   }
   
