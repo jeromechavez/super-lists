@@ -23,15 +23,13 @@ export default class SaveTask extends Component {
     const { tasks, currentInput } = this.state
     alert(this.state.currentInput + ' was saved!')
     this.setState({tasks: [ ...tasks, currentInput ]})
-    console.log(this.state.tasks)
     event.preventDefault()
   }
   
   render() {
     return (
-      <div>
-        <h2 className="title">Super Lists</h2>
         <div className="task-container">
+          <h2 className="title">Super Lists</h2>
           <Form onSubmit={this.handleSubmit}>
             <FormItem>
               <Input value={this.state.currentInput} onChange={this.handleChange} />
@@ -46,7 +44,6 @@ export default class SaveTask extends Component {
             </FormItem>
           </Form>
         </div>
-      </div>
     )
   }
 }
