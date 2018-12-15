@@ -32,6 +32,9 @@ export default class SaveTask extends Component {
           <h2 className="title">Super Lists</h2>
           <Form onSubmit={this.handleSubmit}>
             <FormItem>
+              <Input></Input>
+            </FormItem>
+            <FormItem>
               <Input value={this.state.currentInput} onChange={this.handleChange} />
             </FormItem>
 
